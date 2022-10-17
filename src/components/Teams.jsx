@@ -14,6 +14,7 @@ import {
 	finalData,
 	winnerData,
 } from '../assets/data/identifiers';
+import { Container, Row, Tabs } from 'react-bootstrap';
 
 function randomInRange(min, max) {
 	return Math.random() * (max - min) + min;
@@ -141,12 +142,12 @@ const Teams = () => {
 	}, [winner]);
 
 	return (
-		<>
+		<Container>
 			<section className='headline'>
 				<article>FASE DE GRUPOS</article>
 			</section>
 
-			<section className='groups'>
+			<Row gap={8} className='d-flex justify-content-space-between'>
 				{countries.map(country => {
 					return (
 						<Group
@@ -158,7 +159,7 @@ const Teams = () => {
 						/>
 					);
 				})}
-			</section>
+			</Row>
 
 			<section className='headline'>
 				<article>CLASIFICADOS</article>
@@ -300,7 +301,7 @@ const Teams = () => {
 				))}
 			</div>
 			<ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-		</>
+		</Container>
 	);
 };
 

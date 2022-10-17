@@ -1,11 +1,18 @@
 import React from 'react';
+import { Col } from 'react-bootstrap';
 import Team from './Team';
 
 const Group = ({ color, group, countries }) => {
 	return (
-		<div className='group'>
+		<Col xs={6} md={3} lg={3 / 2} className='group'>
 			<div className='groupLetter' style={{ color }}>
-				<div className='letter'>{group}</div>
+				<div className='letter'>Grupo {group}</div>
+			</div>
+			<div className='d-flex justify-content-between'>
+				<span>Seleção</span>
+				<span>
+					Posição: <b className='mx-1'>1º</b> <b>2º</b>
+				</span>
 			</div>
 			<div className='countries'>
 				{countries.map(team => {
@@ -18,7 +25,7 @@ const Group = ({ color, group, countries }) => {
 					);
 				})}
 			</div>
-		</div>
+		</Col>
 	);
 };
 

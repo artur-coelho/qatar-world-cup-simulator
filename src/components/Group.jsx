@@ -5,9 +5,10 @@ import Team from './Team';
 const Group = ({ color, group, countries }) => {
 	return (
 		<Col xs={6} md={3} lg={3 / 2} className='group'>
-			<div className='groupLetter' style={{ color }}>
+			<div className='groupLetter d-flex justify-content-center mt-2'>
 				<div className='letter'>Grupo {group}</div>
 			</div>
+			<hr className='mb-3 p-1 mt-1' />
 			<div className='d-flex justify-content-between'>
 				<span>Seleção</span>
 				<span>

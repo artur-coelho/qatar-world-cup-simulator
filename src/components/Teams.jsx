@@ -14,7 +14,7 @@ import {
 	finalData,
 	winnerData,
 } from '../assets/data/identifiers';
-import { Container, Row, Tabs } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 function randomInRange(min, max) {
 	return Math.random() * (max - min) + min;

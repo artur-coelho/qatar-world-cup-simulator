@@ -5,19 +5,23 @@
 		"countries": [
 			{
 				"id": 11,
-				"country": "qa"
+				"country": "qa",
+				"name": "Catar"
 			},
 			{
 				"id": 12,
-				"country": "ecu"
+				"country": "ecu",
+				"name": "Equador"
 			},
 			{
 				"id": 13,
-				"country": "sen"
+				"country": "sen",
+				"name": "Senegal"
 			},
 			{
 				"id": 14,
-				"country": "ned"
+				"country": "ned",
+				"name": "Holanda"
 			}
 		],
 		"color": "#32a852"
@@ -28,19 +32,24 @@
 		"countries": [
 			{
 				"id": 21,
-				"country": "ing"
+				"country": "ing",
+				"name": "Inglaterra"
+				
 			},
 			{
 				"id": 22,
-				"country": "irn"
+				"country": "irn",
+				"name": "Irã"
 			},
 			{
 				"id": 23,
-				"country": "usa"
+				"country": "usa",
+				"name": "Estados Unidos"
 			},
 			{
 				"id": 24,
-				"country": "wal"
+				"country": "wal",
+				"name": "País de Gales"
 			}
 		],
 		"color": "#3277a8"
@@ -51,19 +60,23 @@
 		"countries": [
 			{
 				"id": 31,
-				"country": "arg"
+				"country": "arg",
+				"name": "Argentina"
 			},
 			{
 				"id": 32,
-				"country": "sau"
+				"country": "sau",
+				"name": "Arábia Saudita"
 			},
 			{
 				"id": 33,
-				"country": "mex"
+				"country": "mex",
+				"name": "México"
 			},
 			{
 				"id": 34,
-				"country": "pol"
+				"country": "pol",
+				"name": "Polônia"
 			}
 		],
 
@@ -75,19 +88,23 @@
 		"countries": [
 			{
 				"id": 41,
-				"country": "fra"
+				"country": "fra",
+				"name": "França"
 			},
 			{
 				"id": 42,
-				"country": "aus"
+				"country": "aus",
+				"name": "Austrália"
 			},
 			{
 				"id": 43,
-				"country": "din"
+				"country": "din",
+				"name": "Dinamarca"
 			},
 			{
 				"id": 44,
-				"country": "tun"
+				"country": "tun",
+				"name": "Tunísia"
 			}
 		],
 		"color": "#8dc43b"
@@ -98,19 +115,24 @@
 		"countries": [
 			{
 				"id": 51,
-				"country": "esp"
+				"country": "esp",
+				"name": "Espanha"
 			},
 			{
 				"id": 52,
-				"country": "cr"
+				"country": "cr",
+				"name": "Costa Rica"
 			},
 			{
 				"id": 53,
-				"country": "ale"
+				"country": "ale",
+				"name": "Alemanha"
 			},
 			{
 				"id": 54,
-				"country": "jap"
+				"country": "jap",
+				"name": "Japão"
+				
 			}
 		],
 
@@ -122,19 +144,23 @@
 		"countries": [
 			{
 				"id": 61,
-				"country": "bel"
+				"country": "bel",
+				"name": "Bélgica"
 			},
 			{
 				"id": 62,
-				"country": "can"
+				"country": "can",
+				"name": "Canadá"
 			},
 			{
 				"id": 63,
-				"country": "mar"
+				"country": "mar",
+				"name": "Marrocos"
 			},
 			{
 				"id": 64,
-				"country": "cro"
+				"country": "cro",
+				"name": "Croácia"
 			}
 		],
 		"color": "#c43b66"
@@ -145,19 +171,23 @@
 		"countries": [
 			{
 				"id": 71,
-				"country": "bra"
+				"country": "bra",
+				"name": "Brasil"
 			},
 			{
 				"id": 72,
-				"country": "ser"
+				"country": "ser",
+				"name": "Sérvia"
 			},
 			{
 				"id": 73,
-				"country": "sui"
+				"country": "sui",
+				"name": "Suiça"
 			},
 			{
 				"id": 74,
-				"country": "cam"
+				"country": "cam",
+				"name": "Camarões"
 			}
 		],
 		"color": "#3bc4b4"
@@ -168,19 +198,23 @@
 		"countries": [
 			{
 				"id": 81,
-				"country": "por"
+				"country": "por",
+				"name": "Portugal"
 			},
 			{
 				"id": 82,
-				"country": "gha"
+				"country": "gha",
+				"name": "Gana"
 			},
 			{
 				"id": 83,
-				"country": "uru"
+				"country": "uru",
+				"name": "Uruguai"
 			},
 			{
 				"id": 84,
-				"country": "kor"
+				"country": "kor",
+				"name": "Coreia do Sul"
 			}
 		],
 		"color": "#3b3fc4"

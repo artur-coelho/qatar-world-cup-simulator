@@ -8,8 +8,6 @@
 	height: 100%;
 	display: flex;
 	justify-content: center;
-	padding-top: 24px;
-
 	svg {
 		width: 155px;
 		height: 150px;
@@ -38,6 +36,11 @@
 	}
 	h1:after {
 		margin-left: 10px;
+	}
+	h4 {
+		display: flex;
+		justify-content: center;
+		font-size: 16px;
 	}
 }
 .buttonsSection {

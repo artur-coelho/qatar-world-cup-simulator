@@ -1,14 +1,10 @@
 .group {
-	&:not(:last-child) {
-		border-right: 2px solid white;
-	}
 	.groupLetter {
-
-
 		.letter {
 			text-align: center;
 			font-size: 24px;
 			font-weight: 600;
+			color: #FFFFFF;
 		}
 	}
 	.country {
@@ -17,7 +13,7 @@
 		align-items: flex-start;
 		margin-bottom: 4px;
 		padding: 4px;
-		background-color: gray;
+		background-color: #6d6d6d;
 		border-radius: 4px;
 
 		.countryItem {
@@ -27,7 +23,7 @@
 			width: 100%;
 
 			.countryName {
-				color: black;
+				color: #212121;
 				margin-left: 4px;
 				font-size: 16px;
 				font-weight: 500;

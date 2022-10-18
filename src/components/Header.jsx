@@ -20,13 +20,13 @@ const Header = () => {
 	return (
 		<section>
 			<Container>
-				<Row className='p-2 d-flex justify-content-center'>
+				<Row className='p-2 mb-3 d-flex justify-content-center'>
 					<Col xs={0} sm={3} className='logo d-none d-md-block'>
 						<FifaLogo />
 					</Col>
 					<Col xs={12} md={6} className='titleContainer'>
 						<div className='content'>
-							<h1>Simulador</h1>
+							<h1>SIMULADOR</h1>
 							<h4>Copa do Mundo Catar 2022</h4>
 						</div>
 					</Col>

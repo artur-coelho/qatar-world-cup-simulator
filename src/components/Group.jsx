@@ -2,20 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Col } from 'react-bootstrap';
 import Team from './Team';
 
-const Group = ({ color, group, countries, setQualifiedGroup }) => {
+const Group = ({ group, countries, setQualifiedGroup }) => {
 	const [selectedTeams, setSelectedTeams] = useState({
 		first: null,
 		second: null,
 	});
+
 	useEffect(() => {
 		setQualifiedGroup(selectedTeams, group);
 	}, [selectedTeams]);
+
 	return (
-		<Col xs={6} md={3} lg={3 / 2} className='group'>
+		<Col xs={12} sm={6} lg={3} className='group'>
 			<div className='groupLetter d-flex justify-content-center mt-2'>
 				<div className='letter'>Grupo {group}</div>
 			</div>
-			<hr className='mb-3 p-1 mt-1' />
+			<hr className='mb-3 mt-1' />
 			<div className='d-flex justify-content-between'>
 				<span>Seleção</span>
 				<span>
@@ -26,12 +28,13 @@ const Group = ({ color, group, countries, setQualifiedGroup }) => {
 				{countries.map(team => {
 					return (
 						<div className='country' key={team.id}>
-							<div className='countryItem'>
+							<div className='countryItem' key={team.id}>
 								<Team
+									key={team.id}
 									team={team}
 									type={group}
-									setSelectedTeams={setSelectedTeams}
 									selectedTeams={selectedTeams}
+									setSelectedTeams={setSelectedTeams}
 								/>
 							</div>
 						</div>

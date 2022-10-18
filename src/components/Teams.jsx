@@ -53,6 +53,25 @@ const Teams = () => {
 	const refAnimationInstance = useRef(null);
 	const [intervalId, setIntervalId] = useState();
 
+	const [firstQualifieds, setFirstQualifieds] = useState({
+		A: null,
+		B: null,
+		C: null,
+		D: null,
+		E: null,
+		F: null,
+		G: null,
+		H: null,
+	});
+
+	console.log(firstQualifieds);
+
+	const setQualifiedGroup = useCallback((group, groupName) => {
+		setFirstQualifieds(prevState => {
+			return { ...prevState, [groupName]: group };
+		});
+	});
+
 	const getInstance = useCallback(instance => {
 		refAnimationInstance.current = instance;
 	}, []);
@@ -156,6 +175,7 @@ const Teams = () => {
 							group={country.group}
 							countries={country.countries}
 							id={country.id}
+							setQualifiedGroup={setQualifiedGroup}
 						/>
 					);
 				})}

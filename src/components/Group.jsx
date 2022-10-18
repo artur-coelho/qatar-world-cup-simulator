@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col } from 'react-bootstrap';
 import Team from './Team';
 
-const Group = ({ color, group, countries }) => {
+const Group = ({ color, group, countries, setQualifiedGroup }) => {
+	const [selectedTeams, setSelectedTeams] = useState({
+		first: null,
+		second: null,
+	});
+	useEffect(() => {
+		setQualifiedGroup(selectedTeams, group);
+	}, [selectedTeams]);
 	return (
 		<Col xs={6} md={3} lg={3 / 2} className='group'>
 			<div className='groupLetter d-flex justify-content-center mt-2'>
@@ -20,7 +27,12 @@ const Group = ({ color, group, countries }) => {
 					return (
 						<div className='country' key={team.id}>
 							<div className='countryItem'>
-								<Team team={team} type={group} />
+								<Team
+									team={team}
+									type={group}
+									setSelectedTeams={setSelectedTeams}
+									selectedTeams={selectedTeams}
+								/>
 							</div>
 						</div>
 					);

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Form } from 'react-bootstrap';
-import Image from 'react-bootstrap/Image';
 import { useDrag } from 'react-dnd';
+import Image from 'react-bootstrap/Image';
 
 const Team = ({ team, type, selectedTeams, setSelectedTeams }) => {
 	let { country, id, name } = team;
@@ -49,24 +49,24 @@ const Team = ({ team, type, selectedTeams, setSelectedTeams }) => {
 			</div>
 			<Form>
 				<Form.Check
-					onClick={handleClick}
-					name={id}
-					value='first'
 					inline
-					type='radio'
-					id={`${country}-radio-first`}
 					className='ms-1 me-0'
+					value='first'
+					type='radio'
+					name={id}
+					id={`${country}-radio-first`}
 					checked={Number(selectedTeams.first) === Number(id)}
+					onChange={handleClick}
 				/>
 				<Form.Check
-					onClick={handleClick}
-					name={id}
-					value='second'
 					inline
-					type='radio'
-					id={`${country}-radio-second`}
 					className='ms-1 me-0'
+					value='second'
+					type='radio'
+					name={id}
+					id={`${country}-radio-second`}
 					checked={Number(selectedTeams.second) === Number(id)}
+					onChange={handleClick}
 				/>
 			</Form>
 		</div>

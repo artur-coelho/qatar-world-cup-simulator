@@ -15,6 +15,7 @@ import {
 	winnerData,
 } from '../assets/data/identifiers';
 import { Container, Row } from 'react-bootstrap';
+import Match from './Match';
 
 function randomInRange(min, max) {
 	return Math.random() * (max - min) + min;
@@ -65,6 +66,8 @@ const Teams = () => {
 	});
 
 	console.log(firstQualifieds);
+	console.log('Dustbins: ', dustbins);
+	console.log('Quarter', quarter);
 
 	const setQualifiedGroup = useCallback((group, groupName) => {
 		setFirstQualifieds(prevState => {
@@ -162,11 +165,7 @@ const Teams = () => {
 
 	return (
 		<Container>
-			<section className='headline'>
-				<article>FASE DE GRUPOS</article>
-			</section>
-
-			<Row gap={8} className='d-flex justify-content-space-between'>
+			<Row className='d-flex justify-content-space-between'>
 				{countries.map(country => {
 					return (
 						<Group
@@ -181,8 +180,25 @@ const Teams = () => {
 				})}
 			</Row>
 
+			<div>
+				{[...Array(8)].map((x, i) => {
+					return (
+						<Match
+							key={i}
+							index={i}
+							accept={accepts}
+							lastDroppedItem={lastDroppedItem}
+							onDrop={item => {
+								handleDrop(index, item);
+								handleQuarter(index, item);
+							}}
+						/>
+					);
+				})}
+			</div>
+
 			<section className='headline'>
-				<article>CLASIFICADOS</article>
+				<article>CLASSIFICADOS</article>
 			</section>
 
 			<div className='qualified' style={{ overflow: 'hidden', clear: 'both' }}>
@@ -204,10 +220,10 @@ const Teams = () => {
 			</div>
 
 			<section className='headline'>
-				<article>OCTAVOS DE FINAL</article>
+				<article>OITAVAS DE FINAL</article>
 			</section>
 
-			<div className='qualified' style={{ overflow: 'hidden', clear: 'both' }}>
+			<row className='qualified'>
 				{quarter.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='dustbinContainer' key={index}>
 						<Dustbin
@@ -220,13 +236,10 @@ const Teams = () => {
 						/>
 					</div>
 				))}
-			</div>
-			<div className='separatorText'>
-				<p className='separatorItem'>CUARTOS</p>
-				<p className='separatorItem'>CUARTOS</p>
-				<p className='separatorItem'>CUARTOS</p>
-				<p className='separatorItem'>CUARTOS</p>
-			</div>
+			</row>
+			<section className='headline'>
+				<article>QUARTAS DE FINAL</article>
+			</section>
 			<div
 				className='containerTeams'
 				style={{ overflow: 'hidden', clear: 'both' }}
@@ -248,10 +261,9 @@ const Teams = () => {
 				))}
 			</div>
 
-			<div className='separatorText separator--modifier--grid'>
-				<p className='separatorItem'>SEMIFINALES</p>
-				<p className='separatorItem'>SEMIFINALES</p>
-			</div>
+			<section className='headline'>
+				<article>SEMIFINAIS</article>
+			</section>
 
 			<div
 				className='containerTeams containerTeams--modifier--grid'
@@ -301,7 +313,7 @@ const Teams = () => {
 				style={{ overflow: 'hidden', clear: 'both' }}
 			>
 				{winner.map(({ accepts, lastDroppedItem }, index) => (
-					<>
+					<div key={index}>
 						<div className='' key={index}>
 							<Dustbin
 								accept={accepts}
@@ -317,7 +329,7 @@ const Teams = () => {
 							<p className='winner'>GANADOR</p>
 						</div>
 						<img src={Trophy} className='trophy' />
-					</>
+					</div>
 				))}
 			</div>
 			<ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />

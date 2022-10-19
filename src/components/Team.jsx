@@ -17,16 +17,16 @@ const Team = ({ team, type, selectedTeams, setSelectedTeams }) => {
 		[country, id, type]
 	);
 
-	const handleClick = useCallback(({ target: { name, value } }) => {
-		console.log(name, value);
+	const handleClick = useCallback(({ target: { name, value, id } }) => {
+		console.log(name, value, id);
 		setSelectedTeams(prevState => {
-			if (Number(prevState.first) === Number(name) && value === 'second') {
-				return { first: null, [value]: name };
+			if (Number(prevState.first) === Number(value) && name === 'second') {
+				return { first: null, [name]: value };
 			}
-			if (Number(prevState.second) === Number(name) && value === 'first') {
-				return { [value]: name, second: null };
+			if (Number(prevState.second) === Number(value) && name === 'first') {
+				return { [name]: value, second: null };
 			}
-			return { ...prevState, [value]: name };
+			return { ...prevState, [name]: value };
 		});
 	}, []);
 
@@ -51,9 +51,9 @@ const Team = ({ team, type, selectedTeams, setSelectedTeams }) => {
 				<Form.Check
 					inline
 					className='ms-1 me-0'
-					value='first'
+					name='first'
 					type='radio'
-					name={id}
+					value={id}
 					id={`${country}-radio-first`}
 					checked={Number(selectedTeams.first) === Number(id)}
 					onChange={handleClick}
@@ -61,9 +61,9 @@ const Team = ({ team, type, selectedTeams, setSelectedTeams }) => {
 				<Form.Check
 					inline
 					className='ms-1 me-0'
-					value='second'
+					name='second'
 					type='radio'
-					name={id}
+					value={id}
 					id={`${country}-radio-second`}
 					checked={Number(selectedTeams.second) === Number(id)}
 					onChange={handleClick}

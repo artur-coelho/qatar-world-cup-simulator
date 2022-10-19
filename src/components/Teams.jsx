@@ -65,15 +65,21 @@ const Teams = () => {
 		H: null,
 	});
 
-	console.log(firstQualifieds);
-	console.log('Dustbins: ', dustbins);
-	console.log('Quarter', quarter);
+	// console.log(firstQualifieds);
+	// console.log('Dustbins: ', dustbins);
+	// console.log('Quarter', quarter);
 
 	const setQualifiedGroup = useCallback((group, groupName) => {
 		setFirstQualifieds(prevState => {
 			return { ...prevState, [groupName]: group };
 		});
 	});
+
+	useEffect(() => {
+		Object.keys(firstQualifieds).forEach((key, index) => {
+			console.log(firstQualifieds[key]);
+		});
+	}, [firstQualifieds]);
 
 	const getInstance = useCallback(instance => {
 		refAnimationInstance.current = instance;
@@ -180,12 +186,12 @@ const Teams = () => {
 				})}
 			</Row>
 
-			<div>
-				{[...Array(8)].map((x, i) => {
+			{/* <div>
+				{firstQualifieds.map((item, index) => {
 					return (
 						<Match
-							key={i}
-							index={i}
+							key={index}
+							index={index}
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
 							onDrop={item => {
@@ -195,7 +201,7 @@ const Teams = () => {
 						/>
 					);
 				})}
-			</div>
+			</div> */}
 
 			<section className='headline'>
 				<article>CLASSIFICADOS</article>
@@ -223,7 +229,7 @@ const Teams = () => {
 				<article>OITAVAS DE FINAL</article>
 			</section>
 
-			<row className='qualified'>
+			<div className='qualified'>
 				{quarter.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='dustbinContainer' key={index}>
 						<Dustbin
@@ -236,7 +242,8 @@ const Teams = () => {
 						/>
 					</div>
 				))}
-			</row>
+			</div>
+
 			<section className='headline'>
 				<article>QUARTAS DE FINAL</article>
 			</section>

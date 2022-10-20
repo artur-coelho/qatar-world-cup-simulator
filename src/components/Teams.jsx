@@ -77,7 +77,24 @@ const Teams = () => {
 
 	useEffect(() => {
 		Object.keys(firstQualifieds).forEach((key, index) => {
-			console.log(firstQualifieds[key]);
+			// console.log(firstQualifieds[key]?.first);
+			// dustbins[index * 2].lastDroppedItem = firstQualifieds[key]?.first;
+			// dustbins[index * 2 + 1].lastDroppedItem = firstQualifieds[key]?.second;
+			setDustbins(
+				update(dustbins, {
+					[index * 2]: {
+						lastDroppedItem: {
+							$set: firstQualifieds[key]?.first,
+						},
+					},
+					[index * 2 + 1]: {
+						lastDroppedItem: {
+							$set: firstQualifieds[key]?.second,
+						},
+					},
+				})
+			);
+			console.log(dustbins);
 		});
 	}, [firstQualifieds]);
 
@@ -333,7 +350,7 @@ const Teams = () => {
 								isQualified={true}
 								stage={'final'}
 							/>
-							<p className='winner'>GANADOR</p>
+							<p className='winner'>CAMPEÃO</p>
 						</div>
 						<img src={Trophy} className='trophy' />
 					</div>

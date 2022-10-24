@@ -73,16 +73,16 @@ const Teams = () => {
 		setFirstQualifieds(prevState => {
 			return { ...prevState, [groupName]: group };
 		});
+
+		updateDustbins();
 	});
 
-	useEffect(() => {
+	const updateDustbins = () => {
 		Object.keys(firstQualifieds).forEach((key, index) => {
-			// console.log(firstQualifieds[key]?.first);
-			// dustbins[index * 2].lastDroppedItem = firstQualifieds[key]?.first;
-			// dustbins[index * 2 + 1].lastDroppedItem = firstQualifieds[key]?.second;
+			console.log(firstQualifieds[key]?.first);
 			setDustbins(
 				update(dustbins, {
-					[index * 2]: {
+					[index]: {
 						lastDroppedItem: {
 							$set: firstQualifieds[key]?.first,
 						},
@@ -94,9 +94,31 @@ const Teams = () => {
 					},
 				})
 			);
-			console.log(dustbins);
 		});
-	}, [firstQualifieds]);
+	};
+
+	// useEffect(() => {
+	// 	Object.keys(firstQualifieds).forEach((key, index) => {
+	// 		// console.log(firstQualifieds[key]?.first);
+	// 		// dustbins[index * 2].lastDroppedItem = firstQualifieds[key]?.first;
+	// 		// dustbins[index * 2 + 1].lastDroppedItem = firstQualifieds[key]?.second;
+	// 		setDustbins(
+	// 			update(dustbins, {
+	// 				[index]: {
+	// 					lastDroppedItem: {
+	// 						$set: firstQualifieds[key]?.first,
+	// 					},
+	// 				},
+	// 				[index * 2 + 1]: {
+	// 					lastDroppedItem: {
+	// 						$set: firstQualifieds[key]?.second,
+	// 					},
+	// 				},
+	// 			})
+	// 		);
+	// 		console.log(dustbins);
+	// 	});
+	// }, [firstQualifieds]);
 
 	const getInstance = useCallback(instance => {
 		refAnimationInstance.current = instance;

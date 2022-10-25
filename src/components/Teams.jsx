@@ -5,7 +5,7 @@ import Group from './Group';
 import Dustbin from './Dustbin';
 import Trophy from '../assets/logo/trophy.png';
 import countries from '../assets/data/countries.json';
-import { compareArrays } from '../helpers/compareArrays';
+import { compareArrays, isOdd } from '../helpers/compareArrays';
 import {
 	groupStageData,
 	quarterData,
@@ -74,51 +74,33 @@ const Teams = () => {
 			return { ...prevState, [groupName]: group };
 		});
 
-		updateDustbins();
+		updateDustbins(group, groupName);
 	});
 
-	const updateDustbins = () => {
-		Object.keys(firstQualifieds).forEach((key, index) => {
-			console.log(firstQualifieds[key]?.first);
-			setDustbins(
-				update(dustbins, {
-					[index]: {
-						lastDroppedItem: {
-							$set: firstQualifieds[key]?.first,
-						},
-					},
-					[index * 2 + 1]: {
-						lastDroppedItem: {
-							$set: firstQualifieds[key]?.second,
-						},
-					},
-				})
-			);
+	const updateDustbins = (group, groupName) => {
+		dustbins.map((item, index) => {
+			if (item.accepts.includes(groupName) && isOdd(index)) {
+				dustbins[index].lastDroppedItem = group.first;
+				dustbins[index + 1].lastDroppedItem = group.second;
+
+				const result1 = compareArrays(
+					quarter,
+					dustbins[index],
+					index,
+					group.first
+				);
+				setQuarter(result1);
+
+				const result2 = compareArrays(
+					quarter,
+					dustbins[index + 1],
+					index + 1,
+					group.second
+				);
+				setQuarter(result2);
+			}
 		});
 	};
-
-	// useEffect(() => {
-	// 	Object.keys(firstQualifieds).forEach((key, index) => {
-	// 		// console.log(firstQualifieds[key]?.first);
-	// 		// dustbins[index * 2].lastDroppedItem = firstQualifieds[key]?.first;
-	// 		// dustbins[index * 2 + 1].lastDroppedItem = firstQualifieds[key]?.second;
-	// 		setDustbins(
-	// 			update(dustbins, {
-	// 				[index]: {
-	// 					lastDroppedItem: {
-	// 						$set: firstQualifieds[key]?.first,
-	// 					},
-	// 				},
-	// 				[index * 2 + 1]: {
-	// 					lastDroppedItem: {
-	// 						$set: firstQualifieds[key]?.second,
-	// 					},
-	// 				},
-	// 			})
-	// 		);
-	// 		console.log(dustbins);
-	// 	});
-	// }, [firstQualifieds]);
 
 	const getInstance = useCallback(instance => {
 		refAnimationInstance.current = instance;
@@ -225,24 +207,7 @@ const Teams = () => {
 				})}
 			</Row>
 
-			{/* <div>
-				{firstQualifieds.map((item, index) => {
-					return (
-						<Match
-							key={index}
-							index={index}
-							accept={accepts}
-							lastDroppedItem={lastDroppedItem}
-							onDrop={item => {
-								handleDrop(index, item);
-								handleQuarter(index, item);
-							}}
-						/>
-					);
-				})}
-			</div> */}
-
-			<section className='headline'>
+			{/* <section className='headline'>
 				<article>CLASSIFICADOS</article>
 			</section>
 
@@ -262,7 +227,7 @@ const Teams = () => {
 						/>
 					</div>
 				))}
-			</div>
+			</div> */}
 
 			<section className='headline'>
 				<article>OITAVAS DE FINAL</article>
@@ -272,9 +237,11 @@ const Teams = () => {
 				{quarter.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='dustbinContainer' key={index}>
 						<Dustbin
-							accept={accepts + ' '}
+							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
-							onDrop={item => handleQuarter(index, item)}
+							onDrop={item => {
+								handleDrop(index, item);
+							}}
 							key={index}
 							index={index}
 							stage={'eight'}
@@ -332,9 +299,9 @@ const Teams = () => {
 				))}
 			</div>
 
-			<div className='separatorText separator--modifier--grid--final'>
-				<p className='separatorItem'>FINAL</p>
-			</div>
+			<section className='headline'>
+				<article> FINAL</article>
+			</section>
 
 			<div
 				className='containerTeams containerTeams--modifier--grid--column '

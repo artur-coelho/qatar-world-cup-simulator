@@ -233,71 +233,77 @@ const Teams = () => {
 				<article>OITAVAS DE FINAL</article>
 			</section>
 
-			<div className='qualified'>
-				{quarter.map(({ accepts, lastDroppedItem }, index) => (
-					<div className='dustbinContainer' key={index}>
-						<Dustbin
-							accept={accepts}
-							lastDroppedItem={lastDroppedItem}
-							onDrop={item => {
-								handleDrop(index, item);
-							}}
-							key={index}
-							index={index}
-							stage={'eight'}
-						/>
-					</div>
-				))}
-			</div>
+			<Row className='d-flex justify-content-evenly'>
+				{quarter.map(
+					({ accepts, lastDroppedItem }, index) =>
+						isOdd(index) && (
+							<Match
+								accept={accepts}
+								lastDroppedItem={lastDroppedItem}
+								onDrop={item => {
+									handleDrop(index, item);
+								}}
+								oponent={quarter[index + 1]}
+								key={index}
+								index={index}
+								stage={'eight'}
+							/>
+						)
+				)}
+			</Row>
 
 			<section className='headline'>
 				<article>QUARTAS DE FINAL</article>
 			</section>
-			<div
-				className='containerTeams'
+			<Row
+				className='d-flex justify-content-evenly'
 				style={{ overflow: 'hidden', clear: 'both' }}
 			>
-				{qualified.map(({ accepts, lastDroppedItem }, index) => (
-					<div className='containerTeam' key={index}>
-						<Dustbin
-							accept={accepts}
-							lastDroppedItem={lastDroppedItem}
-							onDrop={item =>
-								handleFinalStages(index, item, qualified, setQualified)
-							}
-							key={index}
-							index={index}
-							isQualified={true}
-							stage={'quarter'}
-						/>
-					</div>
-				))}
-			</div>
+				{qualified.map(
+					({ accepts, lastDroppedItem }, index) =>
+						isOdd(index) && (
+							<Match
+								accept={accepts}
+								lastDroppedItem={lastDroppedItem}
+								onDrop={item =>
+									handleFinalStages(index, item, qualified, setQualified)
+								}
+								oponent={quarter[index + 1]}
+								key={index}
+								index={index}
+								isQualified={true}
+								stage={'quarter'}
+							/>
+						)
+				)}
+			</Row>
 
 			<section className='headline'>
 				<article>SEMIFINAIS</article>
 			</section>
 
-			<div
-				className='containerTeams containerTeams--modifier--grid'
+			<Row
+				className='d-flex justify-content-evenly'
 				style={{ overflow: 'hidden', clear: 'both' }}
 			>
-				{semifinal.map(({ accepts, lastDroppedItem }, index) => (
-					<div className='containerTeam' key={index}>
-						<Dustbin
-							accept={accepts}
-							lastDroppedItem={lastDroppedItem}
-							onDrop={item =>
-								handleFinalStages(index, item, semifinal, setSemifinal)
-							}
-							key={index}
-							index={index}
-							isQualified={true}
-							stage={'semifinal'}
-						/>
-					</div>
-				))}
-			</div>
+				{semifinal.map(
+					({ accepts, lastDroppedItem }, index) =>
+						isOdd(index) && (
+							<Match
+								accept={accepts}
+								lastDroppedItem={lastDroppedItem}
+								onDrop={item =>
+									handleFinalStages(index, item, semifinal, setSemifinal)
+								}
+								oponent={quarter[index + 1]}
+								key={index}
+								index={index}
+								isQualified={true}
+								stage={'semifinal'}
+							/>
+						)
+				)}
+			</Row>
 
 			<section className='headline'>
 				<article> FINAL</article>

@@ -2,23 +2,40 @@ import React from 'react';
 import { Col, Card } from 'react-bootstrap';
 import Dustbin from './Dustbin';
 
-const Match = ({ index, accepts, lastDroppedItem }) => {
+const Match = ({
+	index,
+	accept,
+	lastDroppedItem,
+	onDrop,
+	oponent,
+	isQualified,
+}) => {
 	return (
-		<Col>
-			<Card className='p-2'>
+		<Col xs={6} sm={3} xl='auto' className='p-0 my-2'>
+			<Card
+				width='124px'
+				className='p-2 d-flex flex-row justify-content-center align-items-center'
+			>
 				<Dustbin
-					accept={accepts + ' '}
+					accept={accept}
 					lastDroppedItem={lastDroppedItem}
-					onDrop={item => handleQuarter(index, item)}
-					index={index * 2}
-				></Dustbin>
-				<div>X</div>
+					onDrop={onDrop}
+					key={index}
+					index={index}
+					stage={'eight'}
+					isQualified={isQualified}
+				/>
+				<span className='h2 m-1 versus'>X</span>
+
 				<Dustbin
-					accept={accepts + ' '}
-					lastDroppedItem={lastDroppedItem}
-					onDrop={item => handleQuarter(index, item)}
-					index={index * 2 + 1}
-				></Dustbin>
+					accept={oponent.accepts}
+					lastDroppedItem={oponent.lastDroppedItem}
+					onDrop={onDrop}
+					key={index + 1}
+					index={index + 1}
+					stage={'eight'}
+					isQualified={isQualified}
+				/>
 			</Card>
 		</Col>
 	);

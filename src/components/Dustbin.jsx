@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { Image } from 'react-bootstrap';
 import { useDrop, useDrag } from 'react-dnd';
 import checkIndexes from '../helpers/checkIndexes';
 import { isOdd } from '../helpers/compareArrays';
@@ -63,7 +64,8 @@ const Dustbin = memo(function Dustbin({
 		<div ref={drop} data-testid='dustbin' className='dropZone'>
 			{lastDroppedItem ? (
 				<div className='qualifiedCountry'>
-					<img
+					<Image
+						className='flagImg'
 						src={`assets/images/countries/${lastDroppedItem.country}.png`}
 						width={50}
 						height='40'

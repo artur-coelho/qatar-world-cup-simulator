@@ -1,23 +1,26 @@
 .dropZone {
 	display: flex;
 	flex-direction: row;
+	.flagImg {
+		border: solid  #E3DCB6;
+	}
 }
-.dustbinContainer {
-	&:nth-child(2n):not(:last-child) {
-		border-right: 2px solid white;
-		padding-right: 10px;
-	}
-	&:nth-child(2n + 1) {
-		padding-left: 2px;
-	}
+
 	.qualifiedCountry {
 		display: flex;
 		flex-direction: column;
+		color: #212121;
 	}
 	.qualifiedText {
-		color: white;
+		color: #212121;
 		text-align: center;
 		font-size: 21px;
 		margin-top: 6px;
+		margin-bottom: 0;
 	}
+	.countryName {
+		color: #212121;
+	}
+.versus {
+	color: #212121;
 }

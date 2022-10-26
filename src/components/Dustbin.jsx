@@ -1,5 +1,5 @@
-import { memo } from 'react';
-import { Image } from 'react-bootstrap';
+import { memo, useCallback } from 'react';
+import { Form, Image } from 'react-bootstrap';
 import { useDrop, useDrag } from 'react-dnd';
 import checkIndexes from '../helpers/checkIndexes';
 import { isOdd } from '../helpers/compareArrays';
@@ -12,6 +12,8 @@ const Dustbin = memo(function Dustbin({
 	isQualified,
 	isOptional,
 	stage,
+	winner,
+	setWinner,
 }) {
 	const [{ isOver, canDrop }, drop] = useDrop({
 		accept,
@@ -52,8 +54,14 @@ const Dustbin = memo(function Dustbin({
 		[lastDroppedItem]
 	);
 
+	const handleChange = useCallback(() => {
+		setWinner(() => {
+			return lastDroppedItem;
+		});
+	}, [lastDroppedItem]);
+
 	const isActive = isOver && canDrop;
-	let backgroundColor = '#222';
+	let backgroundColor = '#ffffff';
 	if (isActive) {
 		backgroundColor = 'darkgreen';
 	} else if (canDrop) {
@@ -84,10 +92,28 @@ const Dustbin = memo(function Dustbin({
 					) : (
 						<p className='countryName'>{lastDroppedItem.country}</p>
 					)}
+					<Form className='d-flex justify-content-center'>
+						<Form.Check
+							type='radio'
+							className='radio-check'
+							value={lastDroppedItem.id}
+							name='winner'
+							id={`${lastDroppedItem.country}-radio`}
+							checked={Number(winner?.id) === Number(lastDroppedItem.id)}
+							onChange={handleChange}
+						/>
+					</Form>
 				</div>
 			) : (
 				<div className='qualifiedCountry'>
-					<div style={{ width: 50, height: 40, backgroundColor }} />
+					<div
+						style={{
+							width: 50,
+							height: 40,
+							backgroundColor,
+							border: 'solid #E3DCB6',
+						}}
+					/>
 
 					{!isQualified ? (
 						<p className='qualifiedText'>

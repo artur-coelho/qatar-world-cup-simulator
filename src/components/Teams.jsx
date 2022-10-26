@@ -54,29 +54,6 @@ const Teams = () => {
 	const refAnimationInstance = useRef(null);
 	const [intervalId, setIntervalId] = useState();
 
-	const [firstQualifieds, setFirstQualifieds] = useState({
-		A: null,
-		B: null,
-		C: null,
-		D: null,
-		E: null,
-		F: null,
-		G: null,
-		H: null,
-	});
-
-	// console.log(firstQualifieds);
-	// console.log('Dustbins: ', dustbins);
-	// console.log('Quarter', quarter);
-
-	const setQualifiedGroup = useCallback((group, groupName) => {
-		setFirstQualifieds(prevState => {
-			return { ...prevState, [groupName]: group };
-		});
-
-		updateDustbins(group, groupName);
-	});
-
 	const updateDustbins = (group, groupName) => {
 		dustbins.map((item, index) => {
 			if (item.accepts.includes(groupName) && isOdd(index)) {
@@ -101,6 +78,10 @@ const Teams = () => {
 			}
 		});
 	};
+
+	const setMatchWinnerQuarter = useCallback(winner => {
+		console.log(winner);
+	});
 
 	const getInstance = useCallback(instance => {
 		refAnimationInstance.current = instance;
@@ -201,7 +182,7 @@ const Teams = () => {
 							group={country.group}
 							countries={country.countries}
 							id={country.id}
-							setQualifiedGroup={setQualifiedGroup}
+							setQualifiedGroup={updateDustbins}
 						/>
 					);
 				})}
@@ -233,7 +214,7 @@ const Teams = () => {
 				<article>OITAVAS DE FINAL</article>
 			</section>
 
-			<Row className='d-flex justify-content-evenly'>
+			<Row className='d-flex justify-content-evenly  '>
 				{quarter.map(
 					({ accepts, lastDroppedItem }, index) =>
 						isOdd(index) && (
@@ -247,6 +228,7 @@ const Teams = () => {
 								key={index}
 								index={index}
 								stage={'eight'}
+								setMatchWinner={setMatchWinnerQuarter}
 							/>
 						)
 				)}
@@ -255,10 +237,7 @@ const Teams = () => {
 			<section className='headline'>
 				<article>QUARTAS DE FINAL</article>
 			</section>
-			<Row
-				className='d-flex justify-content-evenly'
-				style={{ overflow: 'hidden', clear: 'both' }}
-			>
+			<Row className='d-flex justify-content-evenly'>
 				{qualified.map(
 					({ accepts, lastDroppedItem }, index) =>
 						isOdd(index) && (
@@ -268,11 +247,12 @@ const Teams = () => {
 								onDrop={item =>
 									handleFinalStages(index, item, qualified, setQualified)
 								}
-								oponent={quarter[index + 1]}
+								oponent={qualified[index + 1]}
 								key={index}
 								index={index}
 								isQualified={true}
 								stage={'quarter'}
+								setMatchWinner={setMatchWinnerQuarter}
 							/>
 						)
 				)}
@@ -282,10 +262,7 @@ const Teams = () => {
 				<article>SEMIFINAIS</article>
 			</section>
 
-			<Row
-				className='d-flex justify-content-evenly'
-				style={{ overflow: 'hidden', clear: 'both' }}
-			>
+			<Row className='d-flex justify-content-evenly'>
 				{semifinal.map(
 					({ accepts, lastDroppedItem }, index) =>
 						isOdd(index) && (
@@ -295,11 +272,12 @@ const Teams = () => {
 								onDrop={item =>
 									handleFinalStages(index, item, semifinal, setSemifinal)
 								}
-								oponent={quarter[index + 1]}
+								oponent={semifinal[index + 1]}
 								key={index}
 								index={index}
 								isQualified={true}
 								stage={'semifinal'}
+								setMatchWinner={setMatchWinnerQuarter}
 							/>
 						)
 				)}

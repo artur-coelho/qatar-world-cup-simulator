@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col, Card } from 'react-bootstrap';
 import Dustbin from './Dustbin';
 
@@ -9,13 +9,22 @@ const Match = ({
 	onDrop,
 	oponent,
 	isQualified,
+	setMatchWinner,
 }) => {
+	const [winner, setWinner] = useState({ country: null, id: null });
+
+	useEffect(() => {
+		setMatchWinner(winner);
+	}, [winner]);
+
 	return (
-		<Col xs={6} sm={3} xl='auto' className='p-0 my-2'>
-			<Card
-				width='124px'
-				className='p-2 d-flex flex-row justify-content-center align-items-center'
-			>
+		<Col
+			xs={6}
+			sm={3}
+			xxl='auto'
+			className='p-0 my-2 d-flex justify-content-center'
+		>
+			<Card className='matchCard p-2 d-flex flex-row justify-content-center '>
 				<Dustbin
 					accept={accept}
 					lastDroppedItem={lastDroppedItem}
@@ -24,6 +33,8 @@ const Match = ({
 					index={index}
 					stage={'eight'}
 					isQualified={isQualified}
+					winner={winner}
+					setWinner={setWinner}
 				/>
 				<span className='h2 m-1 versus'>X</span>
 
@@ -35,6 +46,8 @@ const Match = ({
 					index={index + 1}
 					stage={'eight'}
 					isQualified={isQualified}
+					winner={winner}
+					setWinner={setWinner}
 				/>
 			</Card>
 		</Col>

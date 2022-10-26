@@ -54,3 +54,14 @@ main {
 	width: 2000px !important;
 	height: 2000px !important;
 }
+.radio-check input {
+	width: 18px;
+	height: 18px;
+	border: solid 1px green ;
+	
+}
+
+.radio-check input:checked {
+	background-color: green;
+	border-color: green;
+}

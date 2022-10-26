@@ -49,8 +49,7 @@ const Team = ({ team, type, selectedTeams, setSelectedTeams }) => {
 			<Form>
 				<Form.Check
 					inline
-					isValid
-					className='ms-1 me-0'
+					className='ms-1 me-0 radio-check'
 					name='first'
 					type='radio'
 					value={id}
@@ -60,8 +59,7 @@ const Team = ({ team, type, selectedTeams, setSelectedTeams }) => {
 				/>
 				<Form.Check
 					inline
-					isValid
-					className='ms-1 me-0'
+					className='ms-1 me-0 radio-check'
 					name='second'
 					type='radio'
 					value={id}

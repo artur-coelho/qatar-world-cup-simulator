@@ -14,10 +14,10 @@ const Group = ({ group, countries, setQualifiedGroup }) => {
 
 	return (
 		<Col xs={12} sm={6} lg={3} className='group'>
-			<div className='groupLetter d-flex justify-content-center mt-2'>
+			<div className='groupLetter d-flex justify-content-center mt-4'>
 				<div className='letter'>Grupo {group}</div>
 			</div>
-			<hr className='mb-3 mt-1' />
+			<hr className='mb-2 mt-0' />
 			<div className='d-flex justify-content-between'>
 				<span>Seleção</span>
 				<span>

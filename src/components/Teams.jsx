@@ -105,6 +105,9 @@ const Teams = () => {
 	const startAnimation = useCallback(() => {
 		if (!intervalId) {
 			setIntervalId(setInterval(nextTickAnimation, 400));
+			setTimeout(() => {
+				refAnimationInstance.current = null;
+			}, 10000);
 		}
 	}, [intervalId, nextTickAnimation]);
 

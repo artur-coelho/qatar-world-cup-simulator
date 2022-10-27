@@ -11,7 +11,7 @@ const Match = ({
 	isQualified,
 	setMatchWinner,
 }) => {
-	const [winner, setWinner] = useState({ country: null, id: null });
+	const [winner, setWinner] = useState(null);
 
 	useEffect(() => {
 		setMatchWinner(winner);

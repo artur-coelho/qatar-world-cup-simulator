@@ -79,9 +79,18 @@ const Teams = () => {
 		});
 	};
 
-	const setMatchWinnerQuarter = useCallback(winner => {
-		console.log(winner);
-	});
+	const setMatchWinner = useCallback((winner, index, array, setStage) => {
+		const newIndex = Math.floor(index / 2);
+		setStage(
+			update(array, {
+				[newIndex]: {
+					lastDroppedItem: {
+						$set: winner,
+					},
+				},
+			})
+		);
+	}, []);
 
 	const getInstance = useCallback(instance => {
 		refAnimationInstance.current = instance;
@@ -188,28 +197,6 @@ const Teams = () => {
 				})}
 			</Row>
 
-			{/* <section className='headline'>
-				<article>CLASSIFICADOS</article>
-			</section>
-
-			<div className='qualified' style={{ overflow: 'hidden', clear: 'both' }}>
-				{dustbins.map(({ accepts, lastDroppedItem }, index) => (
-					<div className='dustbinContainer' key={index}>
-						<Dustbin
-							accept={accepts}
-							lastDroppedItem={lastDroppedItem}
-							onDrop={item => {
-								handleDrop(index, item);
-								handleQuarter(index, item);
-							}}
-							key={index}
-							index={index}
-							isOptional={true}
-						/>
-					</div>
-				))}
-			</div> */}
-
 			<section className='headline'>
 				<article>OITAVAS DE FINAL</article>
 			</section>
@@ -228,7 +215,9 @@ const Teams = () => {
 								key={index}
 								index={index}
 								stage={'eight'}
-								setMatchWinner={setMatchWinnerQuarter}
+								setMatchWinner={item =>
+									setMatchWinner(item, index, qualified, setQualified)
+								}
 							/>
 						)
 				)}
@@ -244,15 +233,14 @@ const Teams = () => {
 							<Match
 								accept={accepts}
 								lastDroppedItem={lastDroppedItem}
-								onDrop={item =>
-									handleFinalStages(index, item, qualified, setQualified)
-								}
 								oponent={qualified[index + 1]}
 								key={index}
 								index={index}
 								isQualified={true}
 								stage={'quarter'}
-								setMatchWinner={setMatchWinnerQuarter}
+								setMatchWinner={item =>
+									setMatchWinner(item, index, semifinal, setSemifinal)
+								}
 							/>
 						)
 				)}
@@ -269,15 +257,14 @@ const Teams = () => {
 							<Match
 								accept={accepts}
 								lastDroppedItem={lastDroppedItem}
-								onDrop={item =>
-									handleFinalStages(index, item, semifinal, setSemifinal)
-								}
 								oponent={semifinal[index + 1]}
 								key={index}
 								index={index}
 								isQualified={true}
 								stage={'semifinal'}
-								setMatchWinner={setMatchWinnerQuarter}
+								setMatchWinner={item =>
+									setMatchWinner(item, index, final, setFinal)
+								}
 							/>
 						)
 				)}
@@ -287,24 +274,25 @@ const Teams = () => {
 				<article> FINAL</article>
 			</section>
 
-			<div
-				className='containerTeams containerTeams--modifier--grid--column '
-				style={{ overflow: 'hidden', clear: 'both' }}
-			>
-				{final.map(({ accepts, lastDroppedItem }, index) => (
-					<div className='containerTeam' key={index}>
-						<Dustbin
-							accept={accepts}
-							lastDroppedItem={lastDroppedItem}
-							onDrop={item => handleFinalStages(index, item, final, setFinal)}
-							key={index}
-							index={index}
-							isQualified={true}
-							stage={'final'}
-						/>
-					</div>
-				))}
-			</div>
+			<Row className='d-flex justify-content-evenly'>
+				{final.map(
+					({ accepts, lastDroppedItem }, index) =>
+						isOdd(index) && (
+							<Match
+								accept={accepts}
+								lastDroppedItem={lastDroppedItem}
+								oponent={final[index + 1]}
+								key={index}
+								index={index}
+								isQualified={true}
+								stage={'final'}
+								setMatchWinner={item =>
+									setMatchWinner(item, index, winner, setWinner)
+								}
+							/>
+						)
+				)}
+			</Row>
 			<div
 				className='containerTeams containerTeams--modifier--grid--winner winner'
 				style={{ overflow: 'hidden', clear: 'both' }}
@@ -315,9 +303,6 @@ const Teams = () => {
 							<Dustbin
 								accept={accepts}
 								lastDroppedItem={lastDroppedItem}
-								onDrop={item =>
-									handleFinalStages(index, item, winner, setWinner)
-								}
 								key={index}
 								index={index}
 								isQualified={true}

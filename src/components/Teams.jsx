@@ -14,7 +14,7 @@ import {
 	finalData,
 	winnerData,
 } from '../assets/data/identifiers';
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 import Match from './Match';
 
 function randomInRange(min, max) {
@@ -293,27 +293,41 @@ const Teams = () => {
 						)
 				)}
 			</Row>
-			<div
-				className='containerTeams containerTeams--modifier--grid--winner winner'
-				style={{ overflow: 'hidden', clear: 'both' }}
-			>
-				{winner.map(({ accepts, lastDroppedItem }, index) => (
-					<div key={index}>
-						<div className='' key={index}>
-							<Dustbin
-								accept={accepts}
-								lastDroppedItem={lastDroppedItem}
-								key={index}
-								index={index}
-								isQualified={true}
-								stage={'final'}
-							/>
-							<p className='winner'>CAMPEÃO</p>
-						</div>
-						<img src={Trophy} className='trophy' />
-					</div>
-				))}
-			</div>
+
+			<Row className='d-flex justify-content-center mt-4 mt-md-0'>
+				<Col
+					xs={6}
+					md={4}
+					xl={5}
+					className='d-flex justify-content-end align-items-center py-3'
+				>
+					<p className='winner'>CAMPEÃO:</p>
+				</Col>
+				<Col
+					xs={6}
+					md={4}
+					xl={2}
+					className='d-flex justify-content-center align-items-center'
+				>
+					{winner[0].lastDroppedItem && (
+						<Image
+							className='flagImg'
+							src={`assets/images/countries/${winner[0].lastDroppedItem?.country}.png`}
+							width={100}
+							title={winner[0].lastDroppedItem?.country}
+							key={winner[0].lastDroppedItem?.id}
+						/>
+					)}
+				</Col>
+				<Col
+					xs={12}
+					md={4}
+					xl={5}
+					className='mt-3 mt-md-0 p-3 d-flex justify-content-center justify-content-md-start'
+				>
+					<img src={Trophy} className='trophy ' />
+				</Col>
+			</Row>
 			<ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
 		</Container>
 	);

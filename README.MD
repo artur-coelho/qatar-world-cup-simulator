@@ -4,18 +4,20 @@
 Here you can simulate the play-offs from the Fifa World Cup Qatar 2022.
 ```
 
-With the drag and drop it's possible to choose the confrontations and know your winner of the fifa world cup qatar 2022.
+## Project setup
 
-# Demo
+```bash
+git clone https://github.com/artur-coelho/qatar-world-cup-simulator.git
+```
 
-<img src="public\assets\images\demo.gif">
+then:
 
-## Currently languages:
+```
+npm install
+```
 
-- Spanish ✅
-- English (coming soon)
+### Compiles and hot-reloads for development
 
-## Next Features
-
-- Clean results.
-- Allow selected result to be downloaded as an image. ✅
+```
+npm run dev
+```

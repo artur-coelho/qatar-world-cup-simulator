@@ -2,7 +2,6 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 import update from 'immutability-helper';
 import Group from './Group';
-import Dustbin from './Dustbin';
 import Trophy from '../assets/logo/trophy.png';
 import countries from '../assets/data/countries.json';
 import { compareArrays, isOdd } from '../helpers/compareArrays';
@@ -109,17 +108,6 @@ const Teams = () => {
 		}
 	}, [intervalId, nextTickAnimation]);
 
-	const pauseAnimation = useCallback(() => {
-		clearInterval(intervalId);
-		setIntervalId(null);
-	}, [intervalId]);
-
-	const stopAnimation = useCallback(() => {
-		clearInterval(intervalId);
-		setIntervalId(null);
-		refAnimationInstance.current && refAnimationInstance.current.reset();
-	}, [intervalId]);
-
 	const handleDrop = useCallback(
 		(index, item) => {
 			if (
@@ -140,33 +128,6 @@ const Teams = () => {
 		},
 		[dustbins]
 	);
-
-	const handleQuarter = useCallback(
-		(index, item) => {
-			if (
-				dustbins[index].lastDroppedItem !== item &&
-				dustbins[index + 1]?.lastDroppedItem !== item &&
-				dustbins[index - 1]?.lastDroppedItem !== item
-			) {
-				const result = compareArrays(quarter, dustbins[index], index, item);
-
-				setQuarter(result);
-			}
-		},
-		[quarter]
-	);
-
-	const handleFinalStages = useCallback((index, item, array, setState) => {
-		setState(
-			update(array, {
-				[index]: {
-					lastDroppedItem: {
-						$set: item,
-					},
-				},
-			})
-		);
-	}, []);
 
 	useEffect(() => {
 		return () => {

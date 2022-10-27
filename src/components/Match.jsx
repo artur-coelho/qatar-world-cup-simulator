@@ -35,6 +35,7 @@ const Match = ({
 					isQualified={isQualified}
 					winner={winner}
 					setWinner={setWinner}
+					isDisabled={!oponent.lastDroppedItem}
 				/>
 				<span className='h2 m-1 versus'>X</span>
 
@@ -48,6 +49,7 @@ const Match = ({
 					isQualified={isQualified}
 					winner={winner}
 					setWinner={setWinner}
+					isDisabled={!lastDroppedItem}
 				/>
 			</Card>
 		</Col>

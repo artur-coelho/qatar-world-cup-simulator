@@ -14,6 +14,7 @@ const Dustbin = memo(function Dustbin({
 	stage,
 	winner,
 	setWinner,
+	isDisabled,
 }) {
 	const [{ isOver, canDrop }, drop] = useDrop({
 		accept,
@@ -101,6 +102,7 @@ const Dustbin = memo(function Dustbin({
 							id={`${lastDroppedItem.country}-radio`}
 							checked={Number(winner?.id) === Number(lastDroppedItem.id)}
 							onChange={handleChange}
+							disabled={isDisabled}
 						/>
 					</Form>
 				</div>
